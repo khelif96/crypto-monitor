@@ -8,6 +8,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar'
 import CoinDescription from './CoinDescription.js';
+import SearchField from './SearchField.js'
 class App extends Component {
   constructor(props) {
    super(props);
@@ -25,6 +26,9 @@ class App extends Component {
           title="Crypto-Monitor"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         />
+        <center>
+        <SearchField/>
+        </center>
 
        <CoinDescription coinName="BTC"/>
        <CoinDescription coinName="ETH"/>
