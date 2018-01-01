@@ -19,6 +19,7 @@ class App extends Component {
  }
 
  handleToggle = () => this.setState({open: !this.state.open});
+ handleClose = () => this.setState({open: false});
 
   render() {
     return (
@@ -33,9 +34,13 @@ class App extends Component {
             title="Crypto-Monitor"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
-          <Drawer open={this.state.open}>
-            <Link to="/"><MenuItem>Home</MenuItem></Link>
-            <Link to="/Login"><MenuItem>Login</MenuItem></Link>
+          <Drawer
+          open={this.state.open}
+          docked={false}
+          onRequestChange={(open) => this.setState({open})}
+          >
+            <Link onClick={this.handleClose} to="/"><MenuItem>Home</MenuItem></Link>
+            <Link onClick={this.handleClose} to="/Login"><MenuItem>Login</MenuItem></Link>
           </Drawer>
 
         <Route exact path = "/" component = {Home}/>
