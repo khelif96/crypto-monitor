@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {Route,Router, Link} from 'react-router-dom'
+import history from './utils/history'
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
@@ -8,7 +9,9 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar'
 import CoinDescription from './CoinDescription.js';
-import SearchField from './SearchField.js'
+import SearchField from './SearchField.js';
+import Login from './Login';
+import Home from './Home';
 class App extends Component {
   constructor(props) {
    super(props);
@@ -19,29 +22,32 @@ class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-
-      <AppBar
-      onTitleClick={this.handleToggle}
-          title="Crypto-Monitor"
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-        />
-        <center>
-        <SearchField/>
-        </center>
-
-       <CoinDescription coinName="BTC"/>
-       <CoinDescription coinName="ETH"/>
-       <CoinDescription coinName="XVG"/>
-       <CoinDescription coinName="XRP"/>
-       <CoinDescription coinName="LTC"/>
 
 
-       <Drawer open={this.state.open}>
-         <MenuItem>Menu Item</MenuItem>
-         <MenuItem>Menu Item 2</MenuItem>
-       </Drawer>
-      </MuiThemeProvider>
+
+        <Router history= {history}>
+        <MuiThemeProvider>
+
+        <AppBar
+        onTitleClick={this.handleToggle}
+            title="Crypto-Monitor"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+          />
+          <Drawer open={this.state.open}>
+            <Link to="/"><MenuItem>Home</MenuItem></Link>
+            <Link to="/Login"><MenuItem>Login</MenuItem></Link>
+          </Drawer>
+
+        <Route exact path = "/" component = {Home}/>
+
+          <Route exact path = "/Login" component = {
+           (routeProps) => <Login/>}/>
+          </MuiThemeProvider>
+
+        </Router>
+
+
+
     );
   }
 }
