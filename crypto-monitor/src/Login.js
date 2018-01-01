@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import AutoComplete from 'material-ui/AutoComplete';
 import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
 
 
 
 const cardStyle = {
-  margin:200,
-  padding:50
+  marginTop:50,
+  padding:50,
+  backgroundColor:"red"
 };
 class Login extends Component {
   constructor(props){
@@ -23,7 +24,7 @@ class Login extends Component {
 
     return(
       <center>
-      <Card style={cardStyle}>
+      <Paper style={cardStyle} zDepth={3} >
       <h2>Login</h2>
          <TextField
    floatingLabelText="User Name"/>
@@ -37,7 +38,7 @@ class Login extends Component {
     <RaisedButton label="Login" primary={true}/>
     <br/>
     <Link to="/Register">Or Register</Link>
-      </Card>
+      </Paper>
       </center>
   );
   }
