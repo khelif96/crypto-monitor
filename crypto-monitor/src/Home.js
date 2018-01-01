@@ -18,7 +18,7 @@ const pageStyle = {
 class Home extends Component {
   constructor(props){
     super(props);
-    this.state = {coinName: this.props.coinName,BTC: 0,USD: 0, open:false , cryptos: ['BTC','LTC','ETH', 'XRP']}
+    this.state = {coinName: this.props.coinName,BTC: 0,USD: 0, open:false , cryptos: ['BTC','LTC','ETH', 'XRP','REQ']}
     this.generateCryptoDescriptions();
   }
 displayedCryptos = []
@@ -46,6 +46,7 @@ generateCryptoDescriptions = () => {
     return(
 <div style={pageStyle}>
 {this.displayedCryptos}
+<FlatButton label="Track New" fullWidth={true}/>
 </div>
   );
   }
