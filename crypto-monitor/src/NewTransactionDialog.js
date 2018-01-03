@@ -69,7 +69,7 @@ class NewTransactionDialog extends Dialog {
         label="Submit"
         primary={true}
         disabled={true}
-        onClick={this.handleClose}
+        onClick={this.props.closeHandler}
       />,
     ];
 
@@ -79,7 +79,7 @@ class NewTransactionDialog extends Dialog {
         actions={actions}
         modal={false}
         open={this.props.open || this.state.open}
-        onRequestClose={this.handleClose}>
+        onRequestClose={this.props.closeHandler}>
         <div>
           <TextField
           floatingLabelText="Amount Bought" fullWidth={true} underlineShow={false} onChange={this.handleChange} id="amountBought" value={this.state.amountBought}/>

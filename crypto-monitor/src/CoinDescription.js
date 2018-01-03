@@ -15,6 +15,7 @@ class CoinDescription extends Component {
     super(props);
     this.state = {coinName: this.props.coinName,BTC: 0,USD: 0, open:false}
     this.getCoin(this.state.coinName);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   getCoin(coinName){
@@ -35,9 +36,12 @@ class CoinDescription extends Component {
 
  };
 
- handleClose = () => {
+ handleClose = (e) => {
+  //  e.preventDefault()
+   console.log("Handling CLose");
    this.setState({open: false});
  };
+
 
   priceString(){
     const price = this.state.USD;
@@ -71,7 +75,7 @@ class CoinDescription extends Component {
       <CardActions>
         <RaisedButton label="Add Transaction" onClick={this.handleOpen} primary={true}/>
 
-        <NewTransactionDialog open={this.state.open} coinName={this.state.coinName}/>
+        <NewTransactionDialog closeHandler={this.handleClose} open={this.state.open} coinName={this.state.coinName}/>
         <FlatButton label="Stop Tracking" secondary={true} style={style}/>
       </CardActions>
       <CardText expandable={true}>
