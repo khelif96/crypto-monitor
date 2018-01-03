@@ -29,7 +29,10 @@ class CoinDescription extends Component {
   }
 
   handleOpen = () => {
+    console.log("State Change");
    this.setState({open: true});
+   console.log("State " + this.state.open);
+
  };
 
  handleClose = () => {
@@ -42,16 +45,16 @@ class CoinDescription extends Component {
   }
 
   render(){
+    console.log("RERENDERED");
     const actions = [
       <FlatButton
         label="Cancel"
-        primary={true}
+        secondary={true}
         onClick={this.handleClose}
       />,
-      <FlatButton
+      <RaisedButton
         label="Submit"
-        pri
-        mary={true}
+        primary={true}
         disabled={true}
         onClick={this.handleClose}
       />,
@@ -67,16 +70,8 @@ class CoinDescription extends Component {
       />
       <CardActions>
         <RaisedButton label="Add Transaction" onClick={this.handleOpen} primary={true}/>
-        <Dialog
-          title={TransactionTitle}
-          actions={actions}
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
 
-        >
-        <NewTransactionDialog coinName={this.state.coinName}/>
-        </Dialog>
+        <NewTransactionDialog open={this.state.open} coinName={this.state.coinName}/>
         <FlatButton label="Stop Tracking" secondary={true} style={style}/>
       </CardActions>
       <CardText expandable={true}>
