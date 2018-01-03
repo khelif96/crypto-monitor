@@ -1,27 +1,55 @@
 import React, {Component} from 'react';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+
+import TextField from 'material-ui/TextField';
+import Divider from 'material-ui/Divider';
+import DatePicker from 'material-ui/DatePicker';
+import TimePicker from 'material-ui/TimePicker';
+
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
-import TextField from 'material-ui/TextField';
 
 
-// import {getCoin} from './utils/query.js';
 
-const style = {
-  margin:12
-};
-class NewTransactionDialog extends Component {
+
+
+class NewTransactionDialog extends Dialog {
   constructor(props){
     super(props);
-    this.state = {coinName: this.props.coinName,BTC: 0,USD: 0, open:false}
+    this.state = {coinName: this.props.coinName,
+      BTC: 0,
+      USD: 0,
+      open:this.props.open,
+      submitEnabled:this.validateForm,
+      amountBought: null,pricePerCoin:null,transactionTotal:0,transactionDate: new Date()
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleDateUpdate = this.handleDateUpdate.bind(this);
+    this.handleClose = this.handleClose.bind(this);
     // this.getCoin(this.state.coinName);
   }
 
+  handleChange(event) {
+    console.error("ERRROR "+ event.target.id + " value: " + event.target.value);
+    this.setState(
+      {[event.target.id]: event.target.value}
+    );
+
+
+  }
+  handleDateUpdate(empty, date){
+    this.setState({
+      transactionDate : date
+    })
+  }
   handleClose = () => {
+    console.log("Handle Close");
     this.setState({open: false});
   };
 
+  validateForm() {
+     return this.state.amountBought !== null && this.state.pricePerCoin !== null ;
+   }
 
 
   priceString(){
@@ -30,24 +58,45 @@ class NewTransactionDialog extends Component {
   }
 
   render(){
+    const TransactionTitle = "New " + this.state.coinName + " Transaction";
+
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        secondary={true}
+        onClick={this.props.closeHandler}
+      />,
+      <RaisedButton
+        label="Submit"
+        primary={true}
+        disabled={!this.validateForm()}
+        onClick={this.props.closeHandler}
+      />,
+    ];
+
     return(
-
-      <div>
-      <TextField
-      hintText="Amount Bought"
-      floatingLabelText="Amount Bought"/>
-    <br/>
-    <TextField
-    hintText="Price Per Coin"
-    floatingLabelText="Price Per Coin"/>
-    <TextField
-    hintText="Amount"
-    floatingLabelText="Transaction Amount"/>
-    <TextField
-    hintText="Amount"
-    floatingLabelText="Transaction Amount"/>
-    </div>
-
+      <Dialog
+        title={TransactionTitle}
+        actions={actions}
+        modal={false}
+        open={this.props.open || this.state.open}
+        onRequestClose={this.props.closeHandler}>
+        <div>
+          <TextField
+          floatingLabelText="Amount Bought" fullWidth={true} underlineShow={false} onChange={this.handleChange} id="amountBought" value={this.state.amountBought}/>
+          <Divider/>
+          <TextField
+          floatingLabelText="Price Per Coin" fullWidth={true} underlineShow={false} onChange={this.handleChange} id="pricePerCoin" value={this.state.pricePerCoin}/>
+          <Divider/>
+          <TextField
+          floatingLabelText="Transaction Total" fullWidth={true} underlineShow={false} onChange={this.handleChange} id="transactionTotal" value={this.state.amountBought*this.state.pricePerCoin}/>
+          <Divider/>
+          <DatePicker floatingLabelText="Transaction Date" fullWidth={true} underlineShow={false} onChange={this.handleDateUpdate} id="transactionDate" value={this.state.transactionDate}/>
+          <Divider/>
+          <TimePicker floatingLabelText="Transaction Time" fullWidth={true} underlineShow={false} onChange={this.handleDateUpdate} id="transactionDate" value={this.state.transactionDate}/>
+          <Divider/>
+        </div>
+      </Dialog>
   );
   }
 }
