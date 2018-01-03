@@ -50,19 +50,6 @@ class CoinDescription extends Component {
 
   render(){
     console.log("RERENDERED");
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        secondary={true}
-        onClick={this.handleClose}
-      />,
-      <RaisedButton
-        label="Submit"
-        primary={true}
-        disabled={true}
-        onClick={this.handleClose}
-      />,
-    ];
     const TransactionTitle = "New " + this.state.coinName + " Transaction";
     return(
       <Card style={{margin:'20px'}}>

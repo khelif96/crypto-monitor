@@ -20,6 +20,7 @@ class NewTransactionDialog extends Dialog {
       BTC: 0,
       USD: 0,
       open:this.props.open,
+      submitEnabled:this.validateForm,
       amountBought: null,pricePerCoin:null,transactionTotal:0,transactionDate: new Date()
     }
     this.handleChange = this.handleChange.bind(this);
@@ -63,12 +64,12 @@ class NewTransactionDialog extends Dialog {
       <FlatButton
         label="Cancel"
         secondary={true}
-        onClick={this.handleClose}
+        onClick={this.props.closeHandler}
       />,
       <RaisedButton
         label="Submit"
         primary={true}
-        disabled={true}
+        disabled={!this.validateForm()}
         onClick={this.props.closeHandler}
       />,
     ];
