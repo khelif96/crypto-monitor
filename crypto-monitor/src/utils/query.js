@@ -6,8 +6,10 @@ const responseCurrencies =  '&tsyms=BTC,USD,EUR';
 
 export {getCoin};
 function getCoin(coin){
+  console.log("Making axios getcoin call");
   return axios.get(baseUrlDomain +coinPriceParam + coin  + responseCurrencies)
   .then(response => response.data)
+  .catch(error => {alert(JSON.stringify(error))})
 }
 
 export {getAllCoins};

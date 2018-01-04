@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import Dialog from 'material-ui/Dialog';
 
+import TransactionHistoryFeed from './TransactionHistoryFeed';
 import NewTransactionDialog from './NewTransactionDialog'
 import {getCoin} from './utils/query.js';
 
@@ -27,6 +27,9 @@ class CoinDescription extends Component {
         });
           // alert(JSON.stringify(response), response.BTC.USD)
         })
+        .catch(error => {
+          alert("Axios "+  error)
+        })
   }
 
   handleOpen = () => {
@@ -49,8 +52,9 @@ class CoinDescription extends Component {
   }
 
   render(){
-    console.log("RERENDERED");
+    const transactionData = [{type:'Buy',quantity: 12, price:2, total:24},{type:'Sell',quantity: 10, price:3, total:30}]
     const TransactionTitle = "New " + this.state.coinName + " Transaction";
+    // console.log(JSON.stringify(transactionData));
     return(
       <Card style={{margin:'20px'}}>
       <CardHeader
@@ -66,7 +70,7 @@ class CoinDescription extends Component {
         <FlatButton label="Stop Tracking" secondary={true} style={style}/>
       </CardActions>
       <CardText expandable={true}>
-        <div style={{backgroundColor:"red"}}>Te</div>
+        <TransactionHistoryFeed transactionData={transactionData}/>
       </CardText>
     </Card>
   );

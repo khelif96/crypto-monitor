@@ -1,16 +1,9 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import Dialog from 'material-ui/Dialog';
-import AutoComplete from 'material-ui/AutoComplete';
-import TextField from 'material-ui/TextField';
+
 
 import CoinDescription from './CoinDescription';
 
-// import NewTransactionDialog from './NewTransactionDialog'
-import {getAllCoins} from './utils/query.js';
 
 const pageStyle = {
   margin:50

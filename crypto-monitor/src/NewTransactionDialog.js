@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
@@ -21,7 +21,7 @@ class NewTransactionDialog extends Dialog {
       USD: 0,
       open:this.props.open,
       submitEnabled:this.validateForm,
-      amountBought: null,pricePerCoin:null,transactionTotal:0,transactionDate: new Date()
+      amountBought: "",pricePerCoin:"",transactionTotal:0,transactionDate: new Date()
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleDateUpdate = this.handleDateUpdate.bind(this);
@@ -30,7 +30,7 @@ class NewTransactionDialog extends Dialog {
   }
 
   handleChange(event) {
-    console.error("ERRROR "+ event.target.id + " value: " + event.target.value);
+    // console.error("ERRROR "+ event.target.id + " value: " + event.target.value);
     this.setState(
       {[event.target.id]: event.target.value}
     );

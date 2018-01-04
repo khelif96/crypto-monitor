@@ -3,13 +3,9 @@ import {Route,Router, Link} from 'react-router-dom'
 import history from './utils/history'
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar'
-import CoinDescription from './CoinDescription.js';
-import SearchField from './SearchField.js';
 import Login from './Login';
 import Home from './Home';
 class App extends Component {
