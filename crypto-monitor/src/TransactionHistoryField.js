@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Paper from 'material-ui/Paper'
+import Divider from 'material-ui/Divider'
 
 class TransactionHistoryField extends Component{
   constructor(props){
@@ -54,8 +55,12 @@ class TransactionHistoryField extends Component{
       PaperStyle = sellStyle;
     }
     return(
-      <Paper style={PaperStyle}>TEST
-      {this.props.type} {this.props.quantity} BTC at {this.props.price}
+      <Paper style={PaperStyle}>
+      {this.props.type}
+      <Divider inset={true}/>
+      Quantity:{this.props.quantity} BTC
+      <Divider inset={true}/>
+      ${this.props.price}
       </Paper>
 
     )

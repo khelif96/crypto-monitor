@@ -52,9 +52,12 @@ class CoinDescription extends Component {
   }
 
   render(){
-    const transactionData = [{type:'Buy',quantity: 12, price:2, total:24},{type:'Sell',quantity: 10, price:3, total:30}]
+    const transactionData = [{type:'Buy',quantity: 12, price:2, total:24},{type:'Sell',quantity: 10, price:3, total:30},{type:'Buy',quantity: 10, price:2.5, total:25},{type:'Sell',quantity: 10, price:3, total:30}]
     const TransactionTitle = "New " + this.state.coinName + " Transaction";
     // console.log(JSON.stringify(transactionData));
+    const cardTextStyle ={
+      backgroundColor:'#f1f1f1'
+    }
     return(
       <Card style={{margin:'20px'}}>
       <CardHeader
@@ -69,7 +72,7 @@ class CoinDescription extends Component {
         <NewTransactionDialog closeHandler={this.handleClose} open={this.state.open} coinName={this.state.coinName}/>
         <FlatButton label="Stop Tracking" secondary={true} style={style}/>
       </CardActions>
-      <CardText expandable={true}>
+      <CardText style={cardTextStyle} expandable={true}>
         <TransactionHistoryFeed transactionData={transactionData}/>
       </CardText>
     </Card>
